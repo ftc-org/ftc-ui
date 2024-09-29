@@ -1,9 +1,20 @@
-import React from 'react'
+"use client";
+import React from "react";
+import { PostCard } from "./event-card";
+import { Post } from "@/types";
 
-function LatestNews() {
-  return (
-    <div>LatestNews</div>
-  )
+interface Props {
+  posts: Post[];
 }
 
-export default LatestNews
+function LatestNews({ posts }: Props) {
+  return (
+    <ul className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
+      {posts?.map((post, index) => (
+        <PostCard key={index} post={post} />
+      ))}
+    </ul>
+  );
+}
+
+export default LatestNews;
