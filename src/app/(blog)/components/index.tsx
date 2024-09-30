@@ -6,9 +6,11 @@ import { PostCard } from "./post-card";
 
 import { useGetEvents } from "@/api/get-events";
 import { LatestContent } from "./latest-content";
+import { useGetPosts } from "@/api";
 
 function Landing() {
   const { events } = useGetEvents({ isLive: false });
+  const { posts } = useGetPosts();
 
   return (
     <Fragment>
@@ -24,11 +26,13 @@ function Landing() {
         </ul>
       </div>
 
-      <div className='py-10'>
-        <LatestContent type='Posts' />
-      </div>
+      {posts && posts?.length === 0 ? null : (
+        <div>
+          <LatestContent type='Posts' />
+        </div>
+      )}
 
-      <div>
+      <div className='py-10'>
         <LatestContent type='Events' />
       </div>
     </Fragment>

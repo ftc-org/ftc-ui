@@ -16,7 +16,7 @@ export function LatestContent({ type }: { type: "Events" | "Posts" }) {
     <div>
       <div className='flex items-center justify-between mb-3'>
         <h1 className='text-aljazeera-red text-xl font-medium'>
-          {posts?.length === 0 ? null : `Latest ${type}`}
+          Latest {type}
         </h1>
         {content
           ? content?.length > 4 && (
