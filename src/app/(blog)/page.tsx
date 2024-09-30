@@ -7,6 +7,7 @@ import {
   QueryClient,
 } from "@tanstack/react-query";
 import { getPosts } from "@/api";
+import { getEvents } from "@/api/get-events";
 
 async function Home() {
   const queryClient = new QueryClient();
@@ -14,6 +15,11 @@ async function Home() {
   await queryClient.prefetchQuery({
     queryKey: ["posts"],
     queryFn: getPosts,
+  });
+
+  await queryClient.prefetchQuery({
+    queryKey: ["events"],
+    queryFn: () => getEvents(false),
   });
 
   return (

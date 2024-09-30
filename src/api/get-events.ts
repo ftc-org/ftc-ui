@@ -1,10 +1,18 @@
 import { useQuery } from "@tanstack/react-query";
 import { BASE_API_URL } from "./config";
-import { type Post } from "@/types";
+import { TEvent } from "@/types";
 
-export async function getPosts(): Promise<Post[] | undefined> {
+export async function getEvents(
+  isLive?: boolean
+): Promise<TEvent[] | undefined> {
   try {
-    const response = await fetch(`${BASE_API_URL}/posts`);
+    let endpoint = `${BASE_API_URL}/events`;
+
+    if (isLive) {
+      endpoint += `&is_live=true`;
+    }
+
+    const response = await fetch(endpoint);
 
     if (!response.ok) {
       throw new Error(`Error: ${response.status} - ${response.statusText}`);
@@ -18,14 +26,14 @@ export async function getPosts(): Promise<Post[] | undefined> {
   }
 }
 
-export function useGetPosts() {
+export function useGetEvents({ isLive }: { isLive?: boolean }) {
   const results = useQuery({
-    queryKey: ["posts"],
-    queryFn: () => getPosts(),
+    queryKey: ["events"],
+    queryFn: () => getEvents(isLive),
   });
 
   return {
     ...results,
-    posts: results.data,
+    events: results.data,
   };
 }

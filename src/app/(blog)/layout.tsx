@@ -8,10 +8,10 @@ export default function BlogLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <React.Fragment>
+    <div className="py-8">
       <Navbar />
-      {children}
+      <main className="py-8">{children}</main>
       <Footer />
-    </React.Fragment>
+    </div>
   );
 }

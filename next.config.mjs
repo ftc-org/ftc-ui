@@ -3,7 +3,7 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        hostname: "17de-154-160-4-199.ngrok-free.app",
+        hostname: "staging.freethecitizens.org",
       },
     ],
   },

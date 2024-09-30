@@ -2,3 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --backgroundColor: #f6f6f6;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color: var(--backgroundColor);
+}
+
+.unblur {
+  animation: unblur 1s linear;
+}
+
+@keyframes unblur {
+  from {
+    filter: blur(20px);
+  }
+  to {
+    filter: blur(0);
+  }
+}

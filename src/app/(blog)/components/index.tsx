@@ -1,35 +1,35 @@
 "use client";
 import React, { Fragment } from "react";
-import { Banner } from "./banner";
-import { FeaturedEvent } from "./featured-event";
-import LatestNews from "./latest-news";
-import { useGetPosts } from "@/api";
+
+import { LiveUpdateCard } from "./live-update-card";
+import { PostCard } from "./post-card";
+
+import { useGetEvents } from "@/api/get-events";
+import { LatestContent } from "./latest-content";
 
 function Landing() {
-  const { posts } = useGetPosts();
+  const { events } = useGetEvents({ isLive: false });
 
-  console.log("ALL_POSTS", posts);
   return (
     <Fragment>
-      <Banner />
-      <div className='mt-20'>
-        <FeaturedEvent
-          title='Free the citizens'
-          description='wedf'
-          imageUrl='/images/default.jpg'
-          publishTime='2hrs'
-          publisher='author'
-        />
+      <div className='flex lg:flex-row flex-col gap-10'>
+        <div className='mt-10 lg:w-6/12 w-full'>
+          <LiveUpdateCard />
+        </div>
+
+        <ul className='mt-10 flex-1 grid md:grid-cols-2 grid-cols-1 h-fit gap-7'>
+          {events?.map((event, index) => (
+            <PostCard item={event} key={index} />
+          ))}
+        </ul>
       </div>
 
-      <div className='mt-20 py-10'>
-        <div className='flex items-center justify-between my-2'>
-          <h1 className='text-aljazeera-red text-xl font-medium'>
-            Latest News
-          </h1>
-          <h1 className='text-aljazeera-red text-xl font-medium'>Sell All</h1>
-        </div>
-        {posts && <LatestNews posts={posts} />}
+      <div className='py-10'>
+        <LatestContent type='Posts' />
+      </div>
+
+      <div>
+        <LatestContent type='Events' />
       </div>
     </Fragment>
   );
