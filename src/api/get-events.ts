@@ -9,7 +9,7 @@ export async function getEvents(
     let endpoint = `${BASE_API_URL}/events`;
 
     if (isLive) {
-      endpoint += `&is_live=true`;
+      endpoint += `?query_params=is_live`;
     }
 
     const response = await fetch(endpoint);
