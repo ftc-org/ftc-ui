@@ -21,7 +21,7 @@ export function LatestContent({ type }: { type: "Events" | "Posts" }) {
         {content
           ? content?.length > 4 && (
               <div className='text-aljazeera-red text-xl font-medium flex items-center gap-1'>
-                <Link href={`/${type}`}>
+                <Link href={`/${type.toLowerCase()}`}>
                   <span>View more</span>
                 </Link>{" "}
                 <ChevronRight />
