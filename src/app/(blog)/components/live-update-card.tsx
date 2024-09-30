@@ -18,8 +18,8 @@ export function LiveUpdateCard() {
       <div className='lg:w-full relative lg:aspect-[2/3] aspect-auto lg:h-96 h-60 sm:aspect-auto'>
         <Image
           className='h-auto w-full object-cover rounded-t-xl'
-          src={event?.image.image as string}
-          alt={(event?.image.caption as string) ?? "free the citizens"}
+          src={(event?.image?.image as string) ?? "/images/default.jpg"}
+          alt={(event?.image?.caption as string) ?? "free the citizens"}
           fill
           sizes='(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 100vw'
         />

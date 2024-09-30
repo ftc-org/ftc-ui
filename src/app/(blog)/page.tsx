@@ -19,7 +19,7 @@ async function Home() {
 
   await queryClient.prefetchQuery({
     queryKey: ["events"],
-    queryFn: () => getEvents(false),
+    queryFn: () => getEvents(),
   });
 
   return (
