@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { BASE_API_URL } from "./config";
 import { type Post } from "@/types";
+import { BASE_API_URL } from "@/constants";
 
 export async function getPosts(): Promise<Post[] | undefined> {
   try {
