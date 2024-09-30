@@ -7,7 +7,7 @@ import { useGetEvents } from "@/api/get-events";
 import { useGetPosts } from "@/api";
 
 export function LatestContent({ type }: { type: "Events" | "Posts" }) {
-  const { events } = useGetEvents({});
+  const { events } = useGetEvents({ isLive: true });
   const { posts } = useGetPosts();
 
   const content = type === "Events" ? events : posts;
@@ -16,7 +16,7 @@ export function LatestContent({ type }: { type: "Events" | "Posts" }) {
     <div>
       <div className='flex items-center justify-between mb-3'>
         <h1 className='text-aljazeera-red text-xl font-medium'>
-          Latest {type}
+          {posts?.length === 0 ? null : `Latest ${type}`}
         </h1>
         {content
           ? content?.length > 4 && (
