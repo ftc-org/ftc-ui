@@ -15,13 +15,13 @@ export function LiveUpdateCard() {
 
   return (
     <div>
-      <div className='sm:w-2/5 lg:w-full relative lg:aspect-[2/3] aspect-auto lg:h-96 h-60 sm:aspect-auto'>
+      <div className='lg:w-full relative lg:aspect-[2/3] aspect-auto lg:h-96 h-60 sm:aspect-auto'>
         <Image
           className='h-auto w-full object-cover rounded-t-xl'
           src={event?.image.image as string}
           alt={(event?.image.caption as string) ?? "free the citizens"}
           fill
-          sizes='(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 50vw'
+          sizes='(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 100vw'
         />
         <div className='absolute top-4 left-4 bg-white px-3 py-0.5 rounded-full'>
           <LiveIndicator label='Live Updates' />
@@ -34,7 +34,7 @@ export function LiveUpdateCard() {
 
 const UpdatesComponent = ({ updates }: { updates: TEvent["updates"] }) => {
   return (
-    <div className='bg-white p-4 w-full rounded-xl'>
+    <div className='bg-white p-4 w-full rounded-b-xl'>
       <div className='mt-4 relative'>
         <div className='absolute left-[5px] top-[9px] bottom-[9px] w-px bg-orange-300'></div>
         {updates.map((item, index) => (
