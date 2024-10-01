@@ -42,7 +42,7 @@ function Landing() {
           #FreetheCitizens.
         </p>
       </div>
-      <div className="mt-5 flex items-center gap-5">
+      <div className="mt-5 flex items-center gap-3 w-full overflow-x-scroll">
         {trendingLinks.map((link, index) => {
           return (
             <button
