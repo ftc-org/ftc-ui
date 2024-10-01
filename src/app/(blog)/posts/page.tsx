@@ -4,6 +4,7 @@ import { PostCard } from "../components/post-card";
 
 function PostsPage() {
   const { posts } = useGetPosts();
+
   return (
     <div className="max-w-screen-xl mx-auto px-3 min-h-screen">
       <div>

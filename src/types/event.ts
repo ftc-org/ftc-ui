@@ -1,4 +1,5 @@
 type Update = {
+  id:number,
   summary: string;
   content: string;
   author: number;
