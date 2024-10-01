@@ -2,11 +2,8 @@ name: Deploy to Live Channel
 
 on:
   push:
-    branches:
-      - main
-    # Optionally configure to run only for specific files. For example:
-    # paths:
-    # - "website/**"
+    tags:
+      - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 
 jobs:
   deploy_live_website:
@@ -16,8 +13,9 @@ jobs:
       - run: yarn install
       - run: yarn build
       - run: ls ./out
+      - run: npm install -g firebase-tools
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_FTC_ORG }}"
           projectId: ftc-org
-          channelId: staging
+          channelId: live
