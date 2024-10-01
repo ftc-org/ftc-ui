@@ -32,36 +32,36 @@ export function PostCard({ item }: PostCardProps) {
     : truncateString((item as Post).content, truncationLength);
 
   return (
-    <div className='bg-white overflow-hidden flex flex-row lg:flex-col justify-between h-full w-full rounded-b-xl rounded-tr-xl'>
-      <div className='flex flex-row lg:flex-col'>
-        <div className='relative lg:h-[10.5rem] h-36 lg:w-full w-[240px]'>
+    <div className="bg-white overflow-hidden flex flex-row lg:flex-col justify-between h-full w-full rounded-b-xl rounded-tr-xl">
+      <div className="flex flex-row lg:flex-col">
+        <div className="relative lg:h-[10.5rem] h-36 lg:w-full w-[240px]">
           <Image
-            className='object-cover lg:rounded-t-xl rounded-tl-xl rounded-b-none'
+            className="object-cover lg:rounded-t-xl rounded-tl-xl rounded-b-none"
             src={item?.image?.image ?? "/images/default.jpg"}
-            alt={item?.image?.caption ?? 'free the citizens'}
-            placeholder='blur'
+            alt={item?.image?.caption ?? "free the citizens"}
+            placeholder="blur"
             blurDataURL={item?.image?.image ?? "/images/default.jpg"}
             quality={75}
             fill
-            sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw'
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
           />
         </div>
 
-        <div className='p-2.5 w-full'>
-          {isEvent(item) && item.is_live && <LiveIndicator label='Live' />}
+        <div className="p-2.5 w-full">
+          {isEvent(item) && item.is_live && <LiveIndicator label="Live" />}
 
           <Link
-            href='#'
+            href={isEvent(item) ? `/events/${item.id}` : `/posts/${item.id}`}
             className={`mt-2 text-base font-medium ${font.className} fleap-2 hover:underline hover:text-red-500 h-28`}
           >
             <h1>{truncateString(item.title, 100)}</h1>
           </Link>
-          <div className='mt-2'>
-            <p className='font-light text-gray-800 text-sm'>{renderContent}</p>
+          <div className="mt-2">
+            <p className="font-light text-gray-800 text-sm">{renderContent}</p>
           </div>
-          <div className='flex justify-between items-center'>
-            <span className='text-aljazeera-red text-sm mt-3 flex items-center gap-0.5'>
-              <Clock className='!text-sm' height={16} />{" "}
+          <div className="flex justify-between items-center">
+            <span className="text-aljazeera-red text-sm mt-3 flex items-center gap-0.5">
+              <Clock className="!text-sm" height={16} />{" "}
               {getFormattedDate(item.created_at)}
             </span>
           </div>

@@ -21,6 +21,18 @@ export async function getEvents(
     return;
   }
 }
+export async function getEventById(id: string): Promise<TEvent | undefined> {
+  try {
+    let endpoint = `${BASE_API_URL}/events/${id}`;
+
+    const response = await axios.get(endpoint);
+
+    return response.data;
+  } catch (error) {
+    console.error("Failed to fetch event:", error);
+    return;
+  }
+}
 
 export function useGetEvents({ isLive }: { isLive?: boolean }) {
   const results = useQuery({
@@ -32,4 +44,13 @@ export function useGetEvents({ isLive }: { isLive?: boolean }) {
     ...results,
     events: results.data,
   };
+}
+
+export function useGetEvent({ id }: { id?: string }) {
+  const results = useQuery({
+    queryKey: [`events/${id}`],
+    queryFn: () => getEventById(id!),
+  });
+
+  return results
 }

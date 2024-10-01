@@ -1,9 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
+import { Familjen_Grotesk } from "next/font/google";
 import "./globals.css";
 import { ReactQueryProvider } from "./providers";
 
-const font = Inter({ subsets: ["latin"] });
+const font = Familjen_Grotesk({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "#FreeTheCitizens",
