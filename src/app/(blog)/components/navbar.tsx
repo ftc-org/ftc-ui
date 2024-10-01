@@ -10,16 +10,18 @@ function Navbar() {
   return (
     <nav className="sticky top-0 w-full z-50 bg-[#f6f6f6]">
       <div className="max-w-screen-xl mx-auto px-3 py-5 flex justify-between items-center">
-        <Image
-          className="object-cover rounded w-8"
-          src={"/images/ftc-logo.jpg"}
-          alt={"free the citizens"}
-          placeholder="blur"
-          blurDataURL={"/images/default.jpg"}
-          quality={75}
-          width={50}
-          height={50}
-        />
+        <Link href={`/`}>
+          <Image
+            className="object-cover rounded w-8"
+            src={"/images/ftc-logo.jpg"}
+            alt={"free the citizens"}
+            placeholder="blur"
+            blurDataURL={"/images/default.jpg"}
+            quality={75}
+            width={50}
+            height={50}
+          />
+        </Link>
         <div className="space-x-5">
           <Link
             href={`/`}
