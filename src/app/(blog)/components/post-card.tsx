@@ -9,16 +9,18 @@ import { getFormattedDate } from "@/utils/date";
 
 import { LiveIndicator } from "@/app/components/live-indicator";
 import { truncateString } from "@/utils/functions";
+import clsx from "clsx";
 
 type PostOrEvent = Post | TEvent;
 
 interface PostCardProps {
   item: PostOrEvent;
+  content_length?: number;
 }
 
 const font = Roboto({ subsets: ["latin"], weight: "500" });
 
-export function PostCard({ item }: PostCardProps) {
+export function PostCard({ item, content_length }: PostCardProps) {
   const matches = useMediaQuery("(min-width: 768px)");
 
   const isEvent = (item: PostOrEvent): item is TEvent => {
@@ -26,6 +28,7 @@ export function PostCard({ item }: PostCardProps) {
   };
 
   const truncationLength = matches ? 100 : 65;
+  const headerTruncationLength = matches ? 100 : 40;
 
   const renderContent = isEvent(item)
     ? truncateString(item.description, truncationLength)
@@ -34,27 +37,40 @@ export function PostCard({ item }: PostCardProps) {
   return (
     <div className="bg-white overflow-hidden flex flex-row lg:flex-col justify-between h-full w-full rounded-b-xl rounded-tr-xl">
       <div className="flex flex-row lg:flex-col">
-        <div className="relative lg:h-[10.5rem] h-36 lg:w-full w-[240px]">
+        <div
+          className={clsx("relative h-36 lg:w-full w-[240px]", {
+            "lg:h-[12.5rem]": content_length && content_length < 4,
+            "lg:h-[10.5rem]": content_length && content_length > 4,
+          })}
+        >
           <Image
             className="object-cover lg:rounded-t-xl rounded-tl-xl rounded-b-none"
-            src={item?.image?.image ?? "/images/default.jpg"}
-            alt={item?.image?.caption ?? "free the citizens"}
-            placeholder="blur"
-            blurDataURL={item?.image?.image ?? "/images/default.jpg"}
+            src={
+              isEvent(item)
+                ? item.image.image
+                : item.image ?? "/images/default.jpg"
+            }
+            alt={
+              isEvent(item)
+                ? item.image.caption
+                : item.title ?? "free the citizens"
+            }
+            // placeholder="blur"
+            // blurDataURL={item?.image ?? "/images/default.jpg"}
             quality={75}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 80vw"
           />
         </div>
 
-        <div className="p-2.5 w-full">
+        <div className="px-2.5 py-5 w-full">
           {isEvent(item) && item.is_live && <LiveIndicator label="Live" />}
 
           <Link
             href={isEvent(item) ? `/events/${item.id}` : `/posts/${item.id}`}
             className={`mt-2 text-base font-medium ${font.className} fleap-2 hover:underline hover:text-red-500 h-28`}
           >
-            <h1>{truncateString(item.title, 100)}</h1>
+            <h1>{truncateString(item.title, headerTruncationLength)}</h1>
           </Link>
           <div className="mt-2">
             <p className="font-light text-gray-800 text-sm">{renderContent}</p>

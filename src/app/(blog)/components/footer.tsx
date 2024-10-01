@@ -1,16 +1,15 @@
-"use client"
+"use client";
 import Link from "next/link";
 import React from "react";
 import { SiGithub } from "react-icons/si";
 
 function Footer() {
-  const hashtag = "#FreeTheCitizen #SayNoToGalamsey";
-  const tweetText = "I WILL SPEAK UP!";
+  const hashtag = "#FreeTheCitizens #SayNoToGalamsey";
 
   const handleTweet = () => {
-    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
-      tweetText
-    )}%20%23${encodeURIComponent(hashtag)}`;
+    const twitterUrl = `https://twitter.com/intent/tweet?text=%20%23${encodeURIComponent(
+      hashtag
+    )}`;
     window.open(twitterUrl, "_blank");
   };
 

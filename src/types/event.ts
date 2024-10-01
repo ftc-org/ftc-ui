@@ -1,13 +1,14 @@
 type Update = {
-  id:number,
+  id: number;
   summary: string;
   content: string;
   author: number;
   created_at: Date;
   updated_at: Date;
+  images: EventImage[];
 };
 
-type EventImage = {
+export type EventImage = {
   image: string;
   caption: string;
 };
