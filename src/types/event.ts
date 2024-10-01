@@ -12,6 +12,7 @@ type EventImage = {
 };
 
 export type TEvent = {
+  id: number;
   title: string;
   description: string;
   created_at: Date;

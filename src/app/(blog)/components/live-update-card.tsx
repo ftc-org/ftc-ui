@@ -32,7 +32,7 @@ export function LiveUpdateCard() {
   );
 }
 
-const UpdatesComponent = ({ updates }: { updates: TEvent["updates"] }) => {
+export const UpdatesComponent = ({ updates }: { updates: TEvent["updates"] }) => {
   return (
     <div className='bg-white p-4 w-full rounded-b-xl'>
       <div className='mt-4 relative'>
