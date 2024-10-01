@@ -20,4 +20,4 @@ jobs:
         with:
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_FTC_ORG }}"
           projectId: ftc-org
-          channelId: staging
+          channelId: live
