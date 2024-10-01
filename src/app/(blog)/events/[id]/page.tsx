@@ -6,9 +6,11 @@ type Props = {
     id: string;
   };
 };
-async function EventPage(props: Props) {
+function EventPage(props: Props) {
   return <EventDetailsPage eventId={props.params.id.toString()} />;
 }
+
+export const dynamicParams = false;
 
 export async function generateStaticParams() {
   const allEvents = await getEvents();
