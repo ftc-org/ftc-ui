@@ -23,7 +23,7 @@ export async function getEvents(
 }
 export async function getEventById(id: string): Promise<TEvent | undefined> {
   try {
-    let endpoint = `${BASE_API_URL}/events/${id}`;
+    const endpoint = `${BASE_API_URL}/events/${id}`;
 
     const response = await axios.get(endpoint);
 
