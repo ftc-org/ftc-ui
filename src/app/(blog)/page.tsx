@@ -19,11 +19,11 @@ async function Home() {
 
   await queryClient.prefetchQuery({
     queryKey: ["events"],
-    queryFn: () => getEvents(),
+    queryFn: () => getEvents(true),
   });
 
   return (
-    <section className='max-w-screen-xl mx-auto px-3'>
+    <section className="max-w-screen-xl mx-auto px-3">
       <HydrationBoundary state={dehydrate(queryClient)}>
         <LiveUpdates />
       </HydrationBoundary>
