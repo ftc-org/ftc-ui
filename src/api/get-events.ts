@@ -2,25 +2,27 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { TEvent } from "@/types";
 import { BASE_API_URL } from "@/constants";
+import { cache } from "react";
 
-export async function getEvents(
-  isLive?: boolean
-): Promise<TEvent[] | undefined> {
-  try {
-    let endpoint = `${BASE_API_URL}/events`;
+export const getEvents = cache(
+  async (isLive?: boolean): Promise<TEvent[] | undefined> => {
+    try {
+      let endpoint = `${BASE_API_URL}/events`;
 
-    if (isLive) {
-      endpoint += `?query_params=is_live`;
+      if (isLive) {
+        endpoint += `?query_params=is_live`;
+      }
+
+      const response = await axios.get(endpoint);
+
+      return response.data.results;
+    } catch (error) {
+      console.error("Failed to fetch events:", error);
+      return;
     }
-
-    const response = await axios.get(endpoint);
-
-    return response.data.results;
-  } catch (error) {
-    console.error("Failed to fetch events:", error);
-    return;
   }
-}
+);
+
 export async function getEventById(id: string): Promise<TEvent | undefined> {
   try {
     const endpoint = `${BASE_API_URL}/events/${id}`;
@@ -52,5 +54,5 @@ export function useGetEvent({ id }: { id?: string }) {
     queryFn: () => getEventById(id!),
   });
 
-  return results
+  return results;
 }
