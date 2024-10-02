@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "export",
+  // output: "export",
   distDir: "out",
   images: {
     unoptimized: true,
@@ -10,6 +10,9 @@ const nextConfig = {
       },
       {
         hostname: "storage.googleapis.com",
+      },
+      {
+        hostname: "source.unsplash.com",
       },
     ],
   },

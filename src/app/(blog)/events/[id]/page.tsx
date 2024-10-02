@@ -6,20 +6,18 @@ type Props = {
     id: string;
   };
 };
-function EventPage(props: Props) {
+async function EventPage(props: Props) {
   return <EventDetailsPage eventId={props.params.id.toString()} />;
 }
-
-export const dynamicParams = false;
-
+export const dynamic = "auto";
 export async function generateStaticParams() {
   const allEvents = await getEvents();
 
   if (!allEvents || allEvents.length === 0) {
-    return [];
+    return [{}];
   }
 
-  return allEvents.map((event) => ({
+  return allEvents?.map((event) => ({
     id: event.id.toString(),
   }));
 }

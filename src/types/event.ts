@@ -1,4 +1,4 @@
-type Update = {
+export type Update = {
   id: number;
   summary: string;
   content: string;
