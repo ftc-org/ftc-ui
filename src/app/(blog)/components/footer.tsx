@@ -4,10 +4,16 @@ import React from "react";
 import { SiGithub } from "react-icons/si";
 
 function Footer() {
-  const hashtag = "#FreeTheCitizens #SayNoToGalamsey";
+  const hashtag = `
+  #FreeTheCitizens #StopGalamseyNow
+  #FreeTheCitizens #StopGalamseyNow
+  #FreeTheCitizens #StopGalamseyNow
+  #FreeTheCitizens #StopGalamseyNow
+  #FreeTheCitizens #StopGalamseyNow
+  #FreeTheCitizens #StopGalamseyNow`;
 
   const handleTweet = () => {
-    const twitterUrl = `https://twitter.com/intent/tweet?text=%20%23${encodeURIComponent(
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
       hashtag
     )}`;
     window.open(twitterUrl, "_blank");
