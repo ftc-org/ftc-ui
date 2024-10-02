@@ -45,10 +45,16 @@ const Navbar: React.FC = () => {
 
   const AnimatedLink = motion(Link);
 
-  const hashtag = "#FreeTheCitizens #SayNoToGalamsey";
+  const hashtag = `
+  #FreeTheCitizens #StopGalamseyNow
+  #FreeTheCitizens #StopGalamseyNow
+  #FreeTheCitizens #StopGalamseyNow
+  #FreeTheCitizens #StopGalamseyNow
+  #FreeTheCitizens #StopGalamseyNow
+  #FreeTheCitizens #StopGalamseyNow`;
 
   const handleTweet = () => {
-    const twitterUrl = `https://twitter.com/intent/tweet?text=%20%23${encodeURIComponent(
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(
       hashtag
     )}`;
     window.open(twitterUrl, "_blank");
@@ -64,21 +70,21 @@ const Navbar: React.FC = () => {
   }, [isMenuOpen]);
 
   return (
-    <nav className='lg:sticky relative top-0 w-full z-50 bg-[#f6f6f6]'>
-      <div className='max-w-screen-xl mx-auto px-4 py-3 md:py-5 flex justify-between items-center'>
-        <Link href='/'>
+    <nav className="lg:sticky relative top-0 w-full z-50 bg-[#f6f6f6]">
+      <div className="max-w-screen-xl mx-auto px-4 py-3 md:py-5 flex justify-between items-center">
+        <Link href="/">
           <Image
-            className='object-cover rounded w-8 md:w-10'
-            src='/images/ftc-logo.jpg'
-            alt='Free the Citizens'
-            placeholder='blur'
-            blurDataURL='/images/default.jpg'
+            className="object-cover rounded w-8 md:w-10"
+            src="/images/ftc-logo.jpg"
+            alt="Free the Citizens"
+            placeholder="blur"
+            blurDataURL="/images/default.jpg"
             quality={75}
             width={80}
             height={80}
           />
         </Link>
-        <div className='hidden md:flex space-x-5'>
+        <div className="hidden md:flex space-x-5">
           {navItems.map(({ href, label }) => (
             <Link key={href} href={href} className={getLinkClass(href)}>
               <span>{label}</span>
@@ -86,23 +92,23 @@ const Navbar: React.FC = () => {
           ))}
         </div>
         <button
-          className='md:hidden'
+          className="md:hidden"
           onClick={toggleMenu}
-          aria-label='Toggle menu'
+          aria-label="Toggle menu"
         >
           {isMenuOpen ? <X size={30} /> : <Menu size={30} />}
         </button>
       </div>
 
-      <AnimatePresence mode='popLayout'>
+      <AnimatePresence mode="popLayout">
         {isMenuOpen && (
           <motion.div
             ref={menuRef}
-            className='md:hidden fixed bg-white w-full h-full z-50 p-4'
+            className="md:hidden fixed bg-white w-full h-full z-50 p-4"
             variants={menuVariants}
-            initial='closed'
-            animate='open'
-            exit='closed'
+            initial="closed"
+            animate="open"
+            exit="closed"
           >
             {navItems.map(({ href, label }, index) => (
               <AnimatedLink
@@ -119,10 +125,10 @@ const Navbar: React.FC = () => {
               </AnimatedLink>
             ))}
 
-            <div className='p-4'>
+            <div className="p-4">
               <button
                 onClick={handleTweet}
-                className='px-4 bg-aljazeera-red py-3 rounded-xl w-full flex items-center gap-2 justify-center'
+                className="px-4 bg-aljazeera-red text-white py-3 rounded-xl w-full flex items-center gap-2 justify-center"
               >
                 <BsTwitterX /> <span>#Spread the word</span>
               </button>

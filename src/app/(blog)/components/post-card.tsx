@@ -1,14 +1,12 @@
+import { Clock } from "lucide-react";
+import { Roboto } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
-import { Roboto } from "next/font/google";
-import { Clock } from "lucide-react";
 
-import { useMediaQuery } from "usehooks-ts";
 import { type Post, type TEvent } from "@/types";
 import { getFormattedDate } from "@/utils/date";
 
 import { LiveIndicator } from "@/app/components/live-indicator";
-import { truncateString } from "@/utils/functions";
 import clsx from "clsx";
 
 type PostOrEvent = Post | TEvent;
@@ -21,18 +19,18 @@ interface PostCardProps {
 const font = Roboto({ subsets: ["latin"], weight: "500" });
 
 export function PostCard({ item, content_length }: PostCardProps) {
-  const matches = useMediaQuery("(min-width: 768px)");
+  // const matches = useMediaQuery("(min-width: 768px)");
 
   const isEvent = (item: PostOrEvent): item is TEvent => {
     return "is_live" in item;
   };
 
-  const truncationLength = matches ? 100 : 65;
-  const headerTruncationLength = matches ? 100 : 40;
+  // const truncationLength = matches ? 100 : 65;
+  // const headerTruncationLength = matches ? 100 : 20;
 
-  const renderContent = isEvent(item)
-    ? truncateString(item.description, truncationLength)
-    : truncateString((item as Post).content, truncationLength);
+  // const renderContent = isEvent(item)
+  //   ? truncateString(item.description, truncationLength)
+  //   : truncateString((item as Post).content, truncationLength);
 
   return (
     <div className="bg-white overflow-hidden flex flex-row lg:flex-col justify-between h-full w-full rounded-b-xl rounded-tr-xl">
@@ -44,7 +42,7 @@ export function PostCard({ item, content_length }: PostCardProps) {
           })}
         >
           <Image
-            className="object-cover lg:rounded-t-xl rounded-tl-xl rounded-b-none"
+            className="object-cover lg:rounded-t-xl rounded-tl-xl rounded-b-none h-full"
             src={
               isEvent(item)
                 ? item.image.image
@@ -70,10 +68,12 @@ export function PostCard({ item, content_length }: PostCardProps) {
             href={isEvent(item) ? `/events/${item.id}` : `/posts/${item.id}`}
             className={`mt-2 text-base font-medium ${font.className} fleap-2 hover:underline hover:text-red-500 h-28`}
           >
-            <h1>{truncateString(item.title, headerTruncationLength)}</h1>
+            <h1 className="line-clamp-1">{item.title}</h1>
           </Link>
           <div className="mt-2">
-            <p className="font-light text-gray-800 text-sm">{renderContent}</p>
+            <p className="font-light text-gray-800 text-sm line-clamp-2">
+              {isEvent(item) ? item.description : item.content}
+            </p>
           </div>
           <div className="flex justify-between items-center">
             <span className="text-aljazeera-red text-sm mt-3 flex items-center gap-0.5">
