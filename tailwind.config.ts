@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        "aljazeera-red": "#d21a1c",
+        "aljazeera-red": "#a30f12",
       },
     },
   },

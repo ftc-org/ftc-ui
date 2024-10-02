@@ -10,7 +10,7 @@ import { LatestContent } from "./latest-content";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { ImageMasonryLayout } from "@/app/components/masonry-layout";
-import { mediaItems } from "@/mocks/gallery";
+import { PATRIOTS } from "@/mocks/gallery";
 
 function Landing() {
   const { events } = useGetEvents({ isLive: false });
@@ -29,9 +29,9 @@ function Landing() {
   ];
 
   const handleTweet = (hashtag: string) => {
-    const twitterUrl = `https://twitter.com/search?q=%${encodeURIComponent(
+    const twitterUrl = `https://x.com/hashtag/${encodeURIComponent(
       hashtag
-    )}`;
+    )}?src=hashtag_click&f=live`;
     window.open(twitterUrl, "_blank", "noopener,noreferrer");
   };
 
@@ -82,7 +82,7 @@ function Landing() {
                 <ChevronRight />
               </Link>
             </div>
-            <ImageMasonryLayout mediaItems={mediaItems} />
+            <ImageMasonryLayout mediaItems={PATRIOTS} />
           </ul>
         </div>
       </div>

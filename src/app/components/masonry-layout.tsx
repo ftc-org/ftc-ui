@@ -72,14 +72,19 @@ const FullScreenImage = ({
           typeof item.src === "object" ? (
             <Image
               src={item.src.src}
-              alt={item.title}
+              alt={item.title ?? "free the citizens"}
               width={item.src.width}
               height={item.src.height}
               layout='responsive'
               className='object-contain'
             />
           ) : (
-            <img src={item.src} alt={item.title} className='w-full h-auto' />
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={item.src}
+              alt={item.title ?? "free the citizens"}
+              className='w-full h-auto'
+            />
           )
         ) : null}
         <motion.div
@@ -100,10 +105,14 @@ export const ImageMasonryLayout = ({
   mediaItems,
   showVideos = false,
   videoFrameClassName,
+  title,
+  subtitle,
 }: {
   mediaItems: MediaItem[];
   showVideos?: boolean;
   videoFrameClassName?: string;
+  title?: string;
+  subtitle?: string;
 }) => {
   const [fullScreenIndex, setFullScreenIndex] = useState<number | null>(null);
   const [direction, setDirection] = useState<"left" | "right">("right");
@@ -148,6 +157,10 @@ export const ImageMasonryLayout = ({
   return (
     <div className='bg-gray-100'>
       <div className='max-w-7xl mx-auto'>
+        <div className="mb-4">
+          <h1 className='my-3 text-center text-3xl'>{title}</h1>
+          <p className='my-3 text-center'>{subtitle}</p>
+        </div>
         <motion.div
           className='columns-1 sm:columns-2 lg:columns-3 gap-8 space-y-6'
           initial={{ opacity: 0 }}
@@ -165,7 +178,7 @@ export const ImageMasonryLayout = ({
                   typeof item.src === "object" ? (
                     <Image
                       src={item.src.src}
-                      alt={item.title}
+                      alt={item.title ?? "free the citizens"}
                       width={item.src.width}
                       height={item.src.height}
                       layout='responsive'
