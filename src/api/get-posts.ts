@@ -9,7 +9,20 @@ export async function getPosts(): Promise<Post[] | undefined> {
 
     return response.data.results;
   } catch (error) {
-    console.error("Failed to fetch events:", error);
+    console.error("Failed to fetch posts:", error);
+    return;
+  }
+}
+
+export async function getPostById(id: string): Promise<Post | undefined> {
+  try {
+    const endpoint = `${BASE_API_URL}/posts/${id}`;
+
+    const response = await axios.get(endpoint);
+
+    return response.data;
+  } catch (error) {
+    console.error("Failed to fetch post:", error);
     return;
   }
 }
@@ -24,4 +37,13 @@ export function useGetPosts() {
     ...results,
     posts: results.data,
   };
+}
+
+export function useGetPost({ id }: { id?: string }) {
+  const results = useQuery({
+    queryKey: [`posts/${id}`],
+    queryFn: () => getPostById(id!),
+  });
+
+  return results;
 }

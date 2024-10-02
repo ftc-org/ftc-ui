@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
   --backgroundColor: #f6f6f6;
 }
@@ -10,6 +14,7 @@ body {
   padding: 0;
   margin: 0;
   background-color: var(--backgroundColor);
+  scroll-behavior: smooth;
 }
 
 .unblur {

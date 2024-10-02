@@ -1,7 +1,7 @@
-type PostImage = {
-  image: string;
-  caption: string;
-};
+// type PostImage = {
+//   image: string;
+//   caption: string;
+// };
 
 export type Post = {
   id:number
@@ -10,5 +10,5 @@ export type Post = {
   created_at: Date;
   updated_at: Date;
   author: number;
-  image: PostImage;
+  image: string;
 };

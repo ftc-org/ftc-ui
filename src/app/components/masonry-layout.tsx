@@ -76,7 +76,7 @@ const FullScreenImage = ({
               width={item.src.width}
               height={item.src.height}
               layout='responsive'
-              objectFit='contain'
+              className='object-contain'
             />
           ) : (
             <img src={item.src} alt={item.title} className='w-full h-auto' />

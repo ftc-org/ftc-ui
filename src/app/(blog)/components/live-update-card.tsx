@@ -13,6 +13,37 @@ export function LiveUpdateCard() {
 
   const event = events?.[0];
 
+  const UpdatesComponent = ({ updates }: { updates: TEvent["updates"] }) => {
+    return (
+      <div className='bg-white p-4 w-full rounded-b-xl'>
+        <div className='mt-4 relative'>
+          <div className='absolute left-[5px] top-[9px] bottom-[9px] w-px bg-orange-300'></div>
+          {updates.map((item, index) => (
+            <div key={index} className='flex items-start mb-5 relative'>
+              <div className='absolute left-0 mt-2'>
+                <div className='size-[10px] bg-orange-500 rounded-full ring-4 ring-orange-200'></div>
+              </div>
+              <div className='ml-8'>
+                <span className='text-sm text-gray-600 font-medium'>
+                  {getFormattedDate(item.created_at)}
+                </span>
+                <Link
+                  href={`/events/${event?.id}#${item.id}`}
+                  className='text-base font-semibold mt-1 hover:underline block'
+                >
+                  {truncateString(item.content, 65)}
+                </Link>
+              </div>
+            </div>
+          ))}
+          <div className='absolute left-0 bottom-0'>
+            <div className='size-[10px] bg-orange-500 rounded-full ring-4 ring-orange-200'></div>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div>
       <div className='lg:w-full relative lg:aspect-[2/3] aspect-auto lg:h-96 h-60 sm:aspect-auto'>
@@ -32,33 +63,4 @@ export function LiveUpdateCard() {
   );
 }
 
-export const UpdatesComponent = ({ updates }: { updates: TEvent["updates"] }) => {
-  return (
-    <div className='bg-white p-4 w-full rounded-b-xl'>
-      <div className='mt-4 relative'>
-        <div className='absolute left-[5px] top-[9px] bottom-[9px] w-px bg-orange-300'></div>
-        {updates.map((item, index) => (
-          <div key={index} className='flex items-start mb-5 relative'>
-            <div className='absolute left-0 mt-2'>
-              <div className='size-[10px] bg-orange-500 rounded-full ring-4 ring-orange-200'></div>
-            </div>
-            <div className='ml-8'>
-              <span className='text-sm text-gray-600 font-medium'>
-                {getFormattedDate(item.created_at)}
-              </span>
-              <Link
-                href='#'
-                className='text-base font-semibold mt-1 hover:underline block'
-              >
-                {truncateString(item.content, 65)}
-              </Link>
-            </div>
-          </div>
-        ))}
-        <div className='absolute left-0 bottom-0'>
-          <div className='size-[10px] bg-orange-500 rounded-full ring-4 ring-orange-200'></div>
-        </div>
-      </div>
-    </div>
-  );
-};
+

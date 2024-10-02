@@ -10,18 +10,32 @@ export const getEvents = cache(
       let endpoint = `${BASE_API_URL}/events`;
 
       if (isLive) {
-        endpoint += `?query_params=is_live`;
+        endpoint += `?is_live=true`;
       }
 
       const response = await axios.get(endpoint);
 
-      return response.data.results;
-    } catch (error) {
-      console.error("Failed to fetch events:", error);
-      return;
-    }
+    return response.data.results;
+  } catch (error) {
+    console.error("Failed to fetch events:", error);
+    return;
   }
-);
+})
+
+export async function getRelatedEvents(
+  id: number
+): Promise<TEvent[] | undefined> {
+  try {
+    const endpoint = `${BASE_API_URL}/events/${id}/related`;
+
+    const response = await axios.get(endpoint);
+
+    return response.data.results;
+  } catch (error) {
+    console.error("Failed to fetch events:", error);
+    return;
+  }
+}
 
 export async function getEventById(id: string): Promise<TEvent | undefined> {
   try {
@@ -40,6 +54,18 @@ export function useGetEvents({ isLive }: { isLive?: boolean }) {
   const results = useQuery({
     queryKey: ["events"],
     queryFn: () => getEvents(isLive),
+  });
+
+  return {
+    ...results,
+    events: results.data,
+  };
+}
+
+export function useGetRelatedEvents({ id }: { id?: number }) {
+  const results = useQuery({
+    queryKey: ["events/related"],
+    queryFn: () => getRelatedEvents(id!),
   });
 
   return {

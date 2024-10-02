@@ -1,20 +1,39 @@
 "use client";
-import React, { Fragment } from "react";
-import Link from "next/link";
-import { ChevronRight } from "lucide-react";
+import { Fragment } from "react";
 
 import { LiveUpdateCard } from "./live-update-card";
 import { PostCard } from "./post-card";
 
+import { useGetPosts } from "@/api";
 import { useGetEvents } from "@/api/get-events";
 import { LatestContent } from "./latest-content";
+import Link from "next/link";
+import { ChevronRight } from "lucide-react";
 import { ImageMasonryLayout } from "@/app/components/masonry-layout";
-import { useGetPosts } from "@/api";
 import { mediaItems } from "@/mocks/gallery";
 
 function Landing() {
   const { events } = useGetEvents({ isLive: false });
   const { posts } = useGetPosts();
+
+  const trendingLinks = [
+    {
+      tag: "#FreeTheCitizens",
+    },
+    {
+      tag: "#StopGalamsey",
+    },
+    {
+      tag: "#StopGalamseyNow",
+    },
+  ];
+
+  const handleTweet = (hashtag: string) => {
+    const twitterUrl = `https://twitter.com/search?q=%${encodeURIComponent(
+      hashtag
+    )}`;
+    window.open(twitterUrl, "_blank", "noopener,noreferrer");
+  };
 
   return (
     <Fragment>
@@ -26,6 +45,19 @@ function Landing() {
           Empowering Voices, Amplifying Justice. Stay Informed with
           #FreetheCitizens.
         </p>
+      </div>
+      <div className='mt-5 flex items-center gap-3 w-full overflow-x-scroll'>
+        {trendingLinks.map((link, index) => {
+          return (
+            <button
+              key={index}
+              onClick={() => handleTweet(link.tag)}
+              className='rounded-md px-2 py-1 bg-aljazeera-red text-white hover:text-aljazeera-red hover:bg-white ease duration-200 w-fit grid place-items-center'
+            >
+              {link.tag}
+            </button>
+          );
+        })}
       </div>
       <div className='flex lg:flex-row flex-col gap-10'>
         <div className='mt-10 lg:w-6/12 w-full'>
