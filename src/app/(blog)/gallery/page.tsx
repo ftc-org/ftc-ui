@@ -12,6 +12,8 @@ const GalleryPage = () => {
         mediaItems={mediaItems}
         showVideos={false}
         videoFrameClassName='lg:h-60 h-50'
+        title='Galamsey in Ghana: A Visual Journey'
+        subtitle='Exploring the impact of illegal small-scale gold mining'
       />
     </div>
   );

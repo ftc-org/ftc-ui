@@ -1,6 +1,6 @@
 export interface MediaItem {
   id: number;
-  title: string;
+  title?: string;
   type: "image" | "video";
   src:
     | string
@@ -9,5 +9,5 @@ export interface MediaItem {
         height: number;
         width: number;
       };
-  description: string;
+  description?: string;
 }

@@ -6,6 +6,47 @@ import galamseyOperations from "/public/gallery/galamsey.jpeg";
 import illegalMining from "/public/gallery/illegal-mining.jpg";
 import pollutedWater from "/public/gallery/polluted-water.jpg";
 
+import patriotMessage01 from "/public/gallery/patriot-msg-01.jpeg";
+import patriotMessage02 from "/public/gallery/patriot-msg-02.jpeg";
+import patriotMessage03 from "/public/gallery/patriot-msg-03.jpeg";
+import patriotMessage04 from "/public/gallery/patriot-msg-04.jpeg";
+import patriotMessage05 from "/public/gallery/patriot-msg-05.jpeg";
+import patriotMessage06 from "/public/gallery/patriot-msg-06.jpeg";
+
+export const PATRIOTS: MediaItem[] = [
+  {
+    id: 1,
+    type: "image",
+    src: patriotMessage01,
+  },
+  {
+    title: "patriotMessage02",
+    id: 2,
+    type: "image",
+    src: patriotMessage02,
+  },
+  {
+    id: 3,
+    type: "image",
+    src: patriotMessage03,
+  },
+  {
+    id: 4,
+    type: "image",
+    src: patriotMessage04,
+  },
+  {
+    id: 5,
+    type: "image",
+    src: patriotMessage05,
+  },
+  {
+    id: 6,
+    type: "image",
+    src: patriotMessage06,
+  },
+];
+
 export const mediaItems: MediaItem[] = [
   {
     id: 1,
