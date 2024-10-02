@@ -1,5 +1,15 @@
 {
-  "hosting": {
+  "hosting": [{
+    "target":"ftc-org",
+    "public": "out",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  },
+{
+    "target":"prod-ftc-org",
     "public": "out",
     "ignore": [
       "firebase.json",
@@ -7,4 +17,5 @@
       "**/node_modules/**"
     ]
   }
+  ]
 }
