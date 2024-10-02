@@ -1,6 +1,5 @@
 {
   "hosting": [{
-    "target":"ftc-org",
     "public": "out",
     "ignore": [
       "firebase.json",
