@@ -43,9 +43,9 @@ function Landing() {
         {trendingLinks.map((link, index) => {
           return (
             <Link
-              href={`https://x.com/hashtag/${encodeURIComponent(
+              href={`https://x.com/search?q=${encodeURIComponent(
                 link.tag
-              )}?src=hashtag_click&f=live`}
+              )}&src=typed_query&f=top`}
               key={index}
               target="_blank"
               className="rounded-md px-2 py-1 bg-aljazeera-red text-white hover:text-aljazeera-red hover:bg-white ease duration-200 w-fit grid place-items-center"
